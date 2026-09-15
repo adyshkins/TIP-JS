@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ПР3 — Эксперименты с DOM</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../styles.css">
+  <script type="module" src="./dom-events.js"></script>
+</head>
+<body>
+  <main class="page">
+    <p><a href="../index.html">К приложению</a></p>
+    <h1>DOM и события</h1>
+    <p>До действий необходимо записать прогноз. После — сравнить с выводом в Console.</p>
+    <section id="lab-card" class="lab-card" aria-label="Контейнер эксперимента">
+      <h2 id="lab-title">Исходный заголовок</h2>
+      <button id="lab-button" type="button" data-task-id="23"><span id="lab-label">Изменить заголовок</span></button>
+    </section>
+    <ul id="lab-list"><li>Первая запись</li></ul>
+    <button id="append-button" type="button">Добавить запись</button>
+    <h2>Журнал событий</h2>
+    <pre id="lab-log" aria-live="polite">Нажмите на вложенный текст кнопки.</pre>
+  </main>
+</body>
+</html>

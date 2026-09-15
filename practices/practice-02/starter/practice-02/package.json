@@ -1,0 +1,11 @@
+{
+  "name": "tip-js-practice-02",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/main.js",
+    "examples": "node examples/functions-and-references.js",
+    "check": "node checks.js"
+  }
+}
