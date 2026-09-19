@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ПР6 — Проверки интерфейса</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./checks/browser.checks.js"></script>
+</head>
+<body>
+  <main class="page">
+    <p><a href="./index.html">К приложению</a></p>
+    <h1>Браузерные проверки ПР6</h1>
+    <p>Сначала должен быть запущен <code>npm start</code>. Проверки используют отдельный экземпляр приложения и восстанавливают учебные данные.</p>
+    <p id="check-summary" role="status">Проверки не завершены. Если сообщение не меняется, откройте Console и проверьте ошибки импорта.</p>
+    <ol id="check-results" class="check-list"></ol>
+    <h2>Текстовый протокол</h2>
+    <pre id="check-log"></pre>
+    <h2>Проверяемое приложение</h2>
+    <p>Во время автоматического прогона не нужно нажимать элементы в этой области.</p>
+    <iframe id="test-frame" class="test-preview" title="Приложение для автоматических проверок"></iframe>
+    <div id="test-fixture" class="test-fixture" aria-hidden="true"></div>
+  </main>
+</body>
+</html>

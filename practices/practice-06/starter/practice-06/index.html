@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ПР6 — Браузерный клиент HTTP API</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./src/main.js"></script>
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <p class="eyebrow">Технологии индустриального программирования / ПР6</p>
+      <h1>Задачи из учебного API</h1>
+      <p>Браузерный клиент загружает и изменяет данные только через HTTP-запросы.</p>
+      <nav class="page-links" aria-label="Учебные страницы">
+        <a href="./index.html">Общий сценарий</a>
+        <a href="./index.html?dataset=variant">Свой вариант</a>
+        <a href="./checks.html">Проверки</a>
+      </nav>
+      <p class="muted">API: <code id="api-url">адрес определяется…</code></p>
+    </header>
+
+    <section class="panel" aria-labelledby="editor-heading">
+      <div class="panel-heading">
+        <div>
+          <h2 id="editor-heading">Добавление задачи</h2>
+          <p id="form-mode" class="muted">Идентификатор назначит сервер.</p>
+        </div>
+        <button id="reset-data" type="button" class="button-secondary">Восстановить учебные данные</button>
+      </div>
+
+      <form id="task-form" novalidate>
+        <div class="form-grid">
+          <div class="field field-wide">
+            <label for="task-title">Название</label>
+            <input id="task-title" name="title" type="text" maxlength="100" required
+                   aria-describedby="task-title-hint task-title-error">
+            <small id="task-title-hint">От 1 до 100 символов после удаления пробелов по краям.</small>
+            <p id="task-title-error" class="field-error" data-error-for="title" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="task-priority">Приоритет</label>
+            <select id="task-priority" name="priority" required
+                    aria-describedby="task-priority-error">
+              <option value="medium">Средний</option>
+              <option value="low">Низкий</option>
+              <option value="high">Высокий</option>
+            </select>
+            <p id="task-priority-error" class="field-error" data-error-for="priority" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="task-category">Категория</label>
+            <select id="task-category" name="categoryId" required
+                    aria-describedby="task-category-error">
+              <option value="">Категории загружаются…</option>
+            </select>
+            <p id="task-category-error" class="field-error" data-error-for="categoryId" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button id="form-submit" type="submit">Добавить задачу</button>
+          <button id="cancel-edit" type="button" class="button-secondary" hidden>Отменить редактирование</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="filters-heading">
+      <h2 id="filters-heading">Фильтры запроса</h2>
+      <form id="filters-form">
+        <div class="filter-grid">
+          <div class="field field-wide">
+            <label for="filter-query">Поиск</label>
+            <input id="filter-query" name="q" type="search" maxlength="100" placeholder="Фрагмент названия">
+          </div>
+          <div class="field">
+            <label for="filter-completed">Статус</label>
+            <select id="filter-completed" name="completed">
+              <option value="">Все</option>
+              <option value="false">В работе</option>
+              <option value="true">Выполненные</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="filter-priority">Приоритет</label>
+            <select id="filter-priority" name="priority">
+              <option value="">Все</option>
+              <option value="low">Низкий</option>
+              <option value="medium">Средний</option>
+              <option value="high">Высокий</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="filter-category">Категория</label>
+            <select id="filter-category" name="categoryId">
+              <option value="">Все</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit">Применить</button>
+          <button id="clear-filters" type="button" class="button-secondary">Сбросить фильтры</button>
+          <button id="refresh-list" type="button" class="button-secondary">Обновить</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="list-panel" class="panel" aria-labelledby="list-heading" aria-busy="false">
+      <div class="panel-heading">
+        <h2 id="list-heading">Список задач</h2>
+        <p class="counter">Найдено: <strong id="task-total">—</strong></p>
+      </div>
+
+      <p id="operation-message" class="operation-message" role="status" aria-live="polite"></p>
+      <div id="list-state" class="list-state" role="status" aria-live="polite">
+        <p data-state-message>Приложение ещё не запущено.</p>
+        <button id="retry-load" type="button" class="button-secondary" hidden>Повторить загрузку</button>
+      </div>
+      <ul id="task-list" class="task-list" aria-label="Задачи"></ul>
+      <noscript>Для выполнения работы необходимо разрешить JavaScript в браузере.</noscript>
+    </section>
+  </main>
+</body>
+</html>
