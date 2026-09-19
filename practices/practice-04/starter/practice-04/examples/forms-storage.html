@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ПР4 — Эксперименты с формой и localStorage</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../styles.css">
+  <script type="module" src="./forms-storage.js"></script>
+</head>
+<body>
+  <main class="page">
+    <p><a href="../index.html">К приложению</a></p>
+    <h1>Эксперименты с формой и localStorage</h1>
+    <p>Используется отдельный учебный ключ. Данные основного приложения не изменяются.</p>
+
+    <section class="panel" aria-labelledby="lab-form-heading">
+      <h2 id="lab-form-heading">Форма</h2>
+      <form id="lab-form">
+        <div class="field">
+          <label for="lab-title">Название</label>
+          <input id="lab-title" name="title" required maxlength="20">
+          <p id="lab-title-error" class="field-error" aria-live="polite"></p>
+        </div>
+        <div class="field">
+          <label for="lab-priority">Приоритет</label>
+          <select id="lab-priority" name="priority">
+            <option value="low">Низкий</option>
+            <option value="medium">Средний</option>
+            <option value="high">Высокий</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button type="submit">Проверить и сохранить</button>
+          <button id="load-value" type="button" class="button-secondary">Прочитать</button>
+          <button id="write-broken" type="button" class="button-secondary">Записать повреждённый JSON</button>
+          <button id="remove-value" type="button" class="button-secondary">Удалить ключ</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="lab-log-heading">
+      <h2 id="lab-log-heading">Журнал</h2>
+      <pre id="lab-log">Действия ещё не выполнялись.</pre>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "tip-js-practice-04",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node tools/serve.mjs",
+    "check:service": "node checks/service.checks.js",
+    "check:modules": "node checks/modules.checks.js",
+    "test": "npm run check:service && npm run check:modules"
+  }
+}

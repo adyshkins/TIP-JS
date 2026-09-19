@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ПР4 — Формы, валидация и локальное хранение</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./src/main.js"></script>
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <p class="eyebrow">Технологии индустриального программирования / ПР4</p>
+      <h1>Мои задачи</h1>
+      <p>Создание, редактирование, проверка данных и сохранение в браузере.</p>
+      <nav class="page-links" aria-label="Учебные страницы">
+        <a href="./index.html">Общий набор</a>
+        <a href="./index.html?dataset=variant">Свой вариант</a>
+        <a href="./examples/forms-storage.html">Эксперименты</a>
+        <a href="./checks.html">Проверки</a>
+      </nav>
+      <p id="dataset-label" class="muted">Набор ещё не загружен</p>
+      <p id="storage-status" class="storage-status" role="status" aria-live="polite"></p>
+    </header>
+
+    <section class="panel" aria-labelledby="form-heading">
+      <div class="panel-heading">
+        <div>
+          <h2 id="form-heading">Добавление задачи</h2>
+          <p id="form-mode" class="muted">Режим создания новой задачи.</p>
+        </div>
+        <button id="reset-data" type="button" class="button-secondary">Сбросить сохранённые данные</button>
+      </div>
+
+      <form id="task-form">
+        <div class="form-grid">
+          <div class="field">
+            <label for="task-id">Идентификатор</label>
+            <input id="task-id" name="id" type="number" min="1" step="1" required
+                   aria-describedby="task-id-hint task-id-error">
+            <small id="task-id-hint">Положительное целое число, уникальное в списке.</small>
+            <p id="task-id-error" class="field-error" data-error-for="id" aria-live="polite"></p>
+          </div>
+
+          <div class="field field-wide">
+            <label for="task-title">Название</label>
+            <input id="task-title" name="title" type="text" maxlength="100" required
+                   aria-describedby="task-title-hint task-title-error">
+            <small id="task-title-hint">От 1 до 100 символов после удаления пробелов по краям.</small>
+            <p id="task-title-error" class="field-error" data-error-for="title" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="task-priority">Приоритет</label>
+            <select id="task-priority" name="priority" required
+                    aria-describedby="task-priority-error">
+              <option value="medium">Средний</option>
+              <option value="low">Низкий</option>
+              <option value="high">Высокий</option>
+            </select>
+            <p id="task-priority-error" class="field-error" data-error-for="priority" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <p id="form-message" class="operation-message" role="status" aria-live="polite"></p>
+        <div class="form-actions">
+          <button id="form-submit" type="submit">Добавить задачу</button>
+          <button id="cancel-edit" type="button" class="button-secondary" hidden>Отменить редактирование</button>
+        </div>
+      </form>
+    </section>
+
+    <section aria-labelledby="summary-heading" class="panel">
+      <h2 id="summary-heading">Сводка по всему списку</h2>
+      <dl id="task-summary" class="summary-grid">
+        <div><dt>Всего</dt><dd data-stat="total">—</dd></div>
+        <div><dt>Выполнено</dt><dd data-stat="completed">—</dd></div>
+        <div><dt>Осталось</dt><dd data-stat="pending">—</dd></div>
+        <div><dt>Прогресс</dt><dd data-stat="progress">—</dd></div>
+        <div><dt>Показано</dt><dd data-stat="visible">—</dd></div>
+      </dl>
+    </section>
+
+    <section class="panel" aria-labelledby="list-heading">
+      <h2 id="list-heading">Список задач</h2>
+      <div id="task-filters" class="filters" role="group" aria-label="Фильтр по статусу">
+        <button type="button" data-filter="all" aria-pressed="true" class="is-active"><span class="filter-label">Все</span></button>
+        <button type="button" data-filter="pending" aria-pressed="false"><span class="filter-label">В работе</span></button>
+        <button type="button" data-filter="completed" aria-pressed="false"><span class="filter-label">Выполненные</span></button>
+      </div>
+      <p id="operation-message" class="operation-message" role="status" aria-live="polite"></p>
+      <p id="empty-message" class="empty-message" hidden></p>
+      <ul id="task-list" class="task-list" aria-label="Задачи"></ul>
+      <noscript>Для выполнения работы необходимо разрешить JavaScript в браузере.</noscript>
+    </section>
+  </main>
+</body>
+</html>
