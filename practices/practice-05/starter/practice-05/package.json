@@ -1,0 +1,16 @@
+{
+  "name": "tip-js-practice-05",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node api/server.mjs",
+    "client": "node src/main.js",
+    "example:order": "node examples/event-loop.js",
+    "example:fetch": "node examples/fetch-basics.js",
+    "check:api": "node checks/api-server.checks.js",
+    "check:client": "node checks/api-client.checks.js",
+    "check:integration": "node checks/integration.checks.js",
+    "test": "npm run check:api && npm run check:client && npm run check:integration"
+  }
+}
