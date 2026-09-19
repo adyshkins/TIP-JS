@@ -1,0 +1,14 @@
+:root { font-family: system-ui, sans-serif; color: #1e293b; background: #f1f5f9; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 960px; margin: 0 auto; padding: 24px; }
+section { background: white; padding: 20px; border-radius: 12px; margin: 16px 0; }
+label { display: block; margin-top: 12px; }
+input, select, button { font: inherit; padding: 8px; }
+input, select { max-width: 100%; }
+button { cursor: pointer; margin: 6px 8px 6px 0; }
+:focus-visible { outline: 3px solid #2563eb; outline-offset: 3px; }
+ul { list-style: none; padding: 0; }
+li { border-bottom: 1px solid #cbd5e1; padding: 12px 0; overflow-wrap: anywhere; }
+.error, [role="alert"] { color: #b91c1c; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
