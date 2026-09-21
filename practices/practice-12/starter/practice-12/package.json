@@ -1,0 +1,22 @@
+{
+  "name": "tip-practice-12",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env src/server.js",
+    "dev": "node --env-file-if-exists=.env --watch src/server.js",
+    "test": "node --test checks/*.test.js",
+    "check:queries": "node --test checks/query-builders.test.js checks/store.test.js",
+    "check:api": "node --test checks/api.test.js",
+    "check:db": "node --env-file-if-exists=.env --test checks/database.test.js",
+    "example": "node --env-file-if-exists=.env examples/persistence.js"
+  },
+  "dependencies": {
+    "express": "5.1.0",
+    "pg": "8.23.0"
+  }
+}
