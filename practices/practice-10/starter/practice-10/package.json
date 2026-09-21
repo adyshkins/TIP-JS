@@ -1,0 +1,21 @@
+{
+  "name": "tip-practice-10",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test checks/*.test.js",
+    "check:read": "node --test checks/read-unit.test.js checks/read-api.test.js",
+    "check:write": "node --test checks/write-unit.test.js checks/write-api.test.js",
+    "check:integration": "node --test checks/integration.test.js",
+    "example": "node examples/patch.js"
+  },
+  "dependencies": {
+    "express": "5.1.0"
+  }
+}
