@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лекция 2 — интерактивный интерфейс</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">ТИП · Лекция № 2</p>
+        <h1>Темы для повторения</h1>
+        <p class="hero__lead">
+          Демонстрация DOM, событий, форм, состояния и локального хранения без
+          сторонних библиотек.
+        </p>
+      </header>
+
+      <section class="panel" aria-labelledby="form-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-heading__step">Шаг 1</p>
+            <h2 id="form-title">Добавить тему</h2>
+          </div>
+          <p class="section-heading__hint">Поля со звёздочкой обязательны</p>
+        </div>
+
+        <form id="topic-form" class="topic-form">
+          <div class="field field--wide">
+            <label for="topic-title">Название темы *</label>
+            <input
+              id="topic-title"
+              name="title"
+              type="text"
+              minlength="2"
+              maxlength="80"
+              autocomplete="off"
+              required
+            >
+            <small>От 2 до 80 символов после удаления лишних пробелов.</small>
+          </div>
+
+          <div class="field">
+            <label for="topic-priority">Приоритет *</label>
+            <select id="topic-priority" name="priority" required>
+              <option value="low">Низкий</option>
+              <option value="medium" selected>Средний</option>
+              <option value="high">Высокий</option>
+            </select>
+          </div>
+
+          <button class="button button--primary" type="submit">Добавить</button>
+        </form>
+
+        <p id="app-status" class="status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="panel" aria-labelledby="list-title">
+        <div class="section-heading section-heading--list">
+          <div>
+            <p class="section-heading__step">Шаг 2</p>
+            <h2 id="list-title">Список тем</h2>
+          </div>
+          <p class="counter">
+            Показано: <output id="visible-count">0</output>
+            из <output id="total-count">0</output>
+          </p>
+        </div>
+
+        <div id="filters" class="filters" aria-label="Фильтр тем">
+          <button class="filter-button" type="button" data-filter="all" aria-pressed="true">
+            Все
+          </button>
+          <button class="filter-button" type="button" data-filter="active" aria-pressed="false">
+            В работе
+          </button>
+          <button class="filter-button" type="button" data-filter="completed" aria-pressed="false">
+            Изучены
+          </button>
+        </div>
+
+        <ul id="topic-list" class="topic-list"></ul>
+        <p id="empty-message" class="empty-message" hidden>
+          Для выбранного фильтра тем нет.
+        </p>
+
+        <div class="panel__footer">
+          <p>Состояние списка сохраняется только в этом браузере.</p>
+          <button id="reset-button" class="button button--secondary" type="button">
+            Сбросить пример
+          </button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
