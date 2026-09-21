@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-tip_tasks}
+      POSTGRES_USER: ${POSTGRES_USER:-tip_app}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql/01_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./sql/02_seed.sql:/docker-entrypoint-initdb.d/02_seed.sql:ro
+
+  api:
+    build:
+      context: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      API_HOST: 0.0.0.0
+      API_PORT: 5505
+      DATABASE_URL: postgresql://${POSTGRES_USER:-tip_app}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@db:5432/${POSTGRES_DB:-tip_tasks}
+      ENABLE_DEBUG_RESET: 'false'
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      RELEASE_VERSION: ${RELEASE_VERSION:-1.0.0}
+    ports:
+      - '${API_PORT:-5505}:5505'
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

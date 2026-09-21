@@ -1,0 +1,38 @@
+{
+  "name": "tip-practice-14",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env src/server.js",
+    "dev": "node --env-file-if-exists=.env --watch src/server.js",
+    "test": "node --test tests/unit/*.test.js tests/integration/*.test.js",
+    "test:unit": "node --test tests/unit/*.test.js",
+    "test:integration": "node --test tests/integration/*.test.js",
+    "test:db": "node --env-file-if-exists=.env --test tests/database/*.test.js",
+    "test:coverage": "node --test --experimental-test-coverage --test-coverage-include=src/**/*.js --test-coverage-exclude=src/server.js --test-coverage-exclude=src/db.js --test-coverage-lines=85 --test-coverage-functions=85 --test-coverage-branches=75 tests/unit/*.test.js tests/integration/*.test.js",
+    "lint": "eslint .",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "check:markers": "node tools/check-test-markers.mjs",
+    "quality": "npm run format:check && npm run lint && npm run check:markers && npm run test:coverage",
+    "db:prepare": "node --env-file-if-exists=.env tools/prepare-database.mjs",
+    "smoke": "node --env-file-if-exists=.env tools/smoke.mjs",
+    "release:files": "node tools/check-release-files.mjs",
+    "release:check": "npm run quality && npm run db:prepare && npm run test:db && npm run release:files",
+    "example": "node --env-file-if-exists=.env examples/persistence.js"
+  },
+  "dependencies": {
+    "express": "5.1.0",
+    "pg": "8.23.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "eslint": "10.11.0",
+    "globals": "17.12.0",
+    "prettier": "3.9.8"
+  }
+}

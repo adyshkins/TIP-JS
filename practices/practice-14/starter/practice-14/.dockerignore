@@ -1,0 +1,10 @@
+node_modules/
+coverage/
+.env
+.git/
+.github/
+tests/
+docs/
+examples/
+tools/
+*.log
