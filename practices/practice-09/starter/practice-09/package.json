@@ -1,0 +1,20 @@
+{
+  "name": "tip-practice-09",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test checks/*.test.js",
+    "check:unit": "node --test checks/unit.test.js",
+    "check:api": "node --test checks/api.test.js",
+    "example": "node examples/books.js"
+  },
+  "dependencies": {
+    "express": "5.1.0"
+  }
+}
